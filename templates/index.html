@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Calling Web Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Play Calling Web Application</h1>
+        </header>
+        <div id="controls">
+            <div class="control-group">
+                <input type="text" id="schoolInput" placeholder="Enter school name">
+                <button onclick="loadPlaybook()">Load Playbook</button>
+                <button id="autoPlayTypeButton">Auto Play Type</button>
+            </div>
+            <div class="control-group">
+                <input type="text" id="gamePlanNameInput" placeholder="Game plan name">
+                <button onclick="saveGamePlan()">Save Game Plan</button>
+                <button onclick="loadGamePlan()">Load Game Plan</button>
+            </div>
+            <div class="control-group">
+                <input type="text" id="searchInput" placeholder="Search tags and notes">
+                <button id="toggleViewButton">Switch to Search View</button>
+            </div>
+        </div>
+        <div id="mainContent">
+            <div id="playDirectory">
+                <h2>Play Directory</h2>
+                <div id="playListContent"></div>
+            </div>
+            <div id="playCallSheet">
+                <h2>Play Call Sheet</h2>
+                <div id="situationSliders">
+                    <div class="slider-container">
+                        <label for="downSlider">Down:</label>
+                        <input type="range" id="downSlider" min="1" max="4" value="1">
+                        <span id="downValue">1</span>
+                    </div>
+                    <div class="slider-container">
+                        <label for="distanceSlider">Distance:</label>
+                        <input type="range" id="distanceSlider" min="1" max="20" value="10">
+                        <span id="distanceValue">10</span>
+                    </div>
+                    <div class="slider-container">
+                        <label for="fieldPositionSlider">Field Position:</label>
+                        <input type="range" id="fieldPositionSlider" min="0" max="100" value="50">
+                        <span id="fieldPositionValue">50</span>
+                    </div>
+                </div>
+                <div id="playCallSheetPlays"></div>
+            </div>
+            <div id="selectedPlay">
+                <h2>Selected Play</h2>
+                <div id="playDetails">
+                    <h3>Play Details</h3>
+                    <p><strong>Playbook:</strong> <span id="playbook"></span></p>
+                    <p><strong>Formation:</strong> <span id="formation"></span></p>
+                    <p><strong>Alignment:</strong> <span id="alignment"></span></p>
+                    <p><strong>Play Name:</strong> <span id="playName"></span></p>
+                    <p><strong>Auto Play Type:</strong> <span id="autoPlayType"></span></p>
+                </div>
+                <div id="playImageContainer">
+                    <img id="playImage" src="" alt="Play Image">
+                    <canvas id="annotationCanvas"></canvas>
+                </div>
+                <div id="annotationControls">
+                    <button onclick="clearAnnotations()">Clear Annotations</button>
+                    <input type="color" id="annotationColor" value="#ff0000">
+                    <input type="range" id="annotationSize" min="1" max="20" value="2">
+                </div>
+                <div id="notesSection">
+                    <h3>Notes</h3>
+                    <textarea id="playNotes" rows="4" cols="50"></textarea>
+                </div>
+                <div id="tagsSection">
+                    <h3>Tags</h3>
+                    <input type="text" id="tagInput" placeholder="Add a tag">
+                    <button onclick="addTag()">Add Tag</button>
+                    <div id="tagList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
